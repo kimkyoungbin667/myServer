@@ -5,5 +5,25 @@
 <mapper namespace="Board">
     <select id="findAll" resultType="board">
         select title, good, create_by, created, idx from tb_board
+        where delete_yn = 'N'
+    </select>
+
+    <select id="detailBoard" parameterType="Integer" resultType="board">
+        SELECT
+            b.idx,
+            b.title,
+            b.content,
+            b.good,
+            DATE_FORMAT(b.created, '%Y-%m-%d %H:%i:%s') AS created, -- 날짜를 문자열로 포맷
+            b.delete_yn,
+            u.user_name AS createBy -- 유저 이름을 바로 매핑
+        FROM
+            tb_board b
+                LEFT JOIN
+            tb_user u
+            ON
+                b.create_by = u.idx
+        WHERE
+            b.idx = #{idx}
     </select>
 </mapper>

@@ -1,6 +1,7 @@
 package com.kkbproject.service;
 
 import com.kkbproject.dto.BoardDTO;
+import com.kkbproject.dto.MemberDTO;
 import com.kkbproject.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,5 +15,9 @@ public class BoardService {
 
     public List<BoardDTO> findAll() {
         return boardRepository.findAll();
+    }
+
+    public BoardDTO detailBoard(int idx) {
+        return boardRepository.detailBoard(idx);
     }
 }

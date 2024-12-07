@@ -1,8 +1,11 @@
 package com.kkbproject.controller;
 
+import com.kkbproject.ResponseData.ResponseData;
 import com.kkbproject.dto.BoardDTO;
+import com.kkbproject.dto.MemberDTO;
 import com.kkbproject.service.BoardService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,5 +34,18 @@ public class BoardController {
         System.out.println("반환된 리스트 : "+list);
         return list;
     }
+
+    @GetMapping("/detailBoard")
+    @ResponseBody
+    public ResponseEntity<ResponseData> detailBoard(int idx) {
+
+        ResponseData responseData = new ResponseData();
+        BoardDTO detailBoard = boardService.detailBoard(idx);
+        responseData.setData(detailBoard);
+
+        return ResponseEntity.ok(responseData);
+
+    }
+
 
 }

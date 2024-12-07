@@ -1,6 +1,7 @@
 package com.kkbproject.repository;
 
 import com.kkbproject.dto.BoardDTO;
+import com.kkbproject.dto.MemberDTO;
 import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -15,5 +16,9 @@ public class BoardRepository {
 
     public List<BoardDTO> findAll() {
         return sql.selectList("Board.findAll");
+    }
+
+    public BoardDTO detailBoard(int idx) {
+        return sql.selectOne("Board.detailBoard", idx);
     }
 }

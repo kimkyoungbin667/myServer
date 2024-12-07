@@ -13,5 +13,4 @@
         <typeAlias type="com.kkbproject.dto.MemberDTO" alias="member"/>
     </typeAliases>
 
-
 </configuration>
