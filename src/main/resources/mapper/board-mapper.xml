@@ -4,6 +4,6 @@
 
 <mapper namespace="Board">
     <select id="findAll" resultType="board">
-        select * from tb_board
+        select title, good, create_by, created, idx from tb_board
     </select>
 </mapper>
