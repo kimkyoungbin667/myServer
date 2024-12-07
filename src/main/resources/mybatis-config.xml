@@ -2,7 +2,16 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+    <!-- camelCase 매핑 활성화 -->
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+
+    <!-- 타입 별칭 설정 -->
     <typeAliases>
-        <typeAlias type="com.kkbproject.dto.BoardDTO" alias="board"></typeAlias>
+        <typeAlias type="com.kkbproject.dto.BoardDTO" alias="board"/>
+        <typeAlias type="com.kkbproject.dto.MemberDTO" alias="member"/>
     </typeAliases>
+
+
 </configuration>
