@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.lang.reflect.Member;
 import java.util.List;
 
 @Repository
@@ -20,5 +21,9 @@ public class MemberRepository {
 
             //단일 사용 sql.selectOne();
             //리스트 갖고올땐 sql.selectList();
+        }
+
+        public MemberDTO getUserInfo(String userId) {
+            return sql.selectOne("Member.getUserInfo", userId);
         }
 }

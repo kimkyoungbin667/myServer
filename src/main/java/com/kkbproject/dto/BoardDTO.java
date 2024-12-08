@@ -1,8 +1,6 @@
 package com.kkbproject.dto;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -11,11 +9,13 @@ import java.time.LocalDateTime;
 @ToString
 public class BoardDTO {
 
-    private Integer idx;            //게시판 인덱스
+    private String boardIdx;       //게시판 인덱스
     private String title;           //제목
     private String content;         //내용
-    private String createBy;     //작성자
-    private LocalDateTime created;  //생성일
+    private String userId;          //작성자 아이디
+    private Long userIdx;          //작성자 인덱스
+    private String userName;        //작성자 이름
+    private String created;         //생성일
     private String deleteYn;        //삭제여부
     private Integer good;           //좋아요
 

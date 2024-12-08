@@ -17,7 +17,11 @@ public class BoardService {
         return boardRepository.findAll();
     }
 
-    public BoardDTO detailBoard(int idx) {
-        return boardRepository.detailBoard(idx);
+    public BoardDTO detailBoard(int board_idx) {
+        return boardRepository.detailBoard(board_idx);
+    }
+
+    public int writeBoard(BoardDTO boardDTO) {
+        return boardRepository.writeBoard(boardDTO);
     }
 }

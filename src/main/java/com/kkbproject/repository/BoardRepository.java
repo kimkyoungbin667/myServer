@@ -18,7 +18,11 @@ public class BoardRepository {
         return sql.selectList("Board.findAll");
     }
 
-    public BoardDTO detailBoard(int idx) {
-        return sql.selectOne("Board.detailBoard", idx);
+    public BoardDTO detailBoard(int board_idx) {
+        return sql.selectOne("Board.detailBoard", board_idx);
+    }
+
+    public int writeBoard(BoardDTO boardDTO) {
+        return sql.insert("Board.writeBoard", boardDTO);
     }
 }

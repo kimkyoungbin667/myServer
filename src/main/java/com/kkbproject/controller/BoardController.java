@@ -7,16 +7,13 @@ import com.kkbproject.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:3001")
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/board")
 public class BoardController {
 
@@ -37,15 +34,29 @@ public class BoardController {
 
     @GetMapping("/detailBoard")
     @ResponseBody
-    public ResponseEntity<ResponseData> detailBoard(int idx) {
+    public ResponseEntity<ResponseData> detailBoard(Integer board_idx) {
 
+        System.out.println("디테일 호출");
+        System.out.println("dawdwa"+board_idx);
         ResponseData responseData = new ResponseData();
-        BoardDTO detailBoard = boardService.detailBoard(idx);
+        BoardDTO detailBoard = boardService.detailBoard(board_idx);
         responseData.setData(detailBoard);
 
         return ResponseEntity.ok(responseData);
-
     }
+
+    @PostMapping("/writeBoard")
+    @ResponseBody
+    public ResponseEntity<ResponseData> writeBoard(@RequestBody BoardDTO boardDTO) {
+        ResponseData responseData = new ResponseData();
+
+        System.out.println(boardDTO);
+        int writeBoard = boardService.writeBoard(boardDTO);
+        responseData.setData(writeBoard);
+
+        return ResponseEntity.ok(responseData);
+    }
+
 
 
 }

@@ -7,4 +7,9 @@
         select user_pw from tb_user
         where user_id = #{userId}
     </select>
+
+    <select id="getUserInfo" parameterType="String" resultType="member">
+        select user_idx, user_id, user_name from tb_user
+        where user_id = #{userId}
+    </select>
 </mapper>

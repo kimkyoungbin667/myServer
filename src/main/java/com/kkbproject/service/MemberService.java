@@ -21,11 +21,11 @@ public class MemberService {
 
             if(stroedPw != null && stroedPw.equals(userPw)) {
                 return true;
-            } else {
-                return false;
-            }
+            } else { return false; }
+        }
 
-
+        public MemberDTO getUserInfo(String userId) {
+            return memberRepository.getUserInfo(userId);
         }
 
 }
