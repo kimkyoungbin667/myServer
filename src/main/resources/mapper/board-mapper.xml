@@ -72,7 +72,11 @@
         WHERE board_idx = #{board_idx}
     </update>
 
-
+    <update id="reviseBoard" parameterType="board">
+        UPDATE tb_board
+        SET title = #{title}, content = #{content}
+        WHERE board_idx = #{boardIdx}
+    </update>
 
 
 </mapper>

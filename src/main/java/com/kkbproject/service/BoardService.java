@@ -28,4 +28,8 @@ public class BoardService {
     public int deleteBoard(int board_idx) {
         return boardRepository.deleteBoard(board_idx);
     }
+
+    public int reviseBoard(BoardDTO boardDTO) {
+        return boardRepository.reviseBoard(boardDTO);
+    }
 }

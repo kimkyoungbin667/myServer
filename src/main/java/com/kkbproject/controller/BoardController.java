@@ -49,7 +49,6 @@ public class BoardController {
     public ResponseEntity<ResponseData> writeBoard(@RequestBody BoardDTO boardDTO) {
         ResponseData responseData = new ResponseData();
 
-        System.out.println("추가 : "+boardDTO);
         int writeBoard = boardService.writeBoard(boardDTO);
         responseData.setData(writeBoard);
 
@@ -60,7 +59,6 @@ public class BoardController {
             responseData.setMsg("게시글 추가 실패");
             return ResponseEntity.ok(responseData);
         }
-
     }
 
     @PostMapping("/deleteBoard")
@@ -76,6 +74,23 @@ public class BoardController {
         } else {
             responseData.setCode("500");
             responseData.setMsg("게시글 삭제 실패");
+            return ResponseEntity.ok(responseData);
+        }
+    }
+
+    @PostMapping("/modifyBoard")
+    @ResponseBody
+    public ResponseEntity<ResponseData> reviseBoard(@RequestBody BoardDTO boardDTO) {
+        ResponseData responseData = new ResponseData();
+
+        System.out.println(boardDTO);
+        int reviseBoard = boardService.reviseBoard(boardDTO);
+
+        if (reviseBoard >= 1) {
+            return ResponseEntity.ok(responseData);
+        } else {
+            responseData.setCode("500");
+            responseData.setMsg("게시글 수정 실패");
             return ResponseEntity.ok(responseData);
         }
 
