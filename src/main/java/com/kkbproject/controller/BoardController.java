@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -34,10 +35,8 @@ public class BoardController {
 
     @GetMapping("/detailBoard")
     @ResponseBody
-    public ResponseEntity<ResponseData> detailBoard(Integer board_idx) {
+    public ResponseEntity<ResponseData> detailBoard(int board_idx) {
 
-        System.out.println("디테일 호출");
-        System.out.println("dawdwa"+board_idx);
         ResponseData responseData = new ResponseData();
         BoardDTO detailBoard = boardService.detailBoard(board_idx);
         responseData.setData(detailBoard);
@@ -50,11 +49,36 @@ public class BoardController {
     public ResponseEntity<ResponseData> writeBoard(@RequestBody BoardDTO boardDTO) {
         ResponseData responseData = new ResponseData();
 
-        System.out.println(boardDTO);
+        System.out.println("추가 : "+boardDTO);
         int writeBoard = boardService.writeBoard(boardDTO);
         responseData.setData(writeBoard);
 
-        return ResponseEntity.ok(responseData);
+        if (writeBoard >= 1) {
+            return ResponseEntity.ok(responseData);
+        } else {
+            responseData.setCode("500");
+            responseData.setMsg("게시글 추가 실패");
+            return ResponseEntity.ok(responseData);
+        }
+
+    }
+
+    @PostMapping("/deleteBoard")
+    @ResponseBody
+    public ResponseEntity<ResponseData> deleteBoard(@RequestBody Map<String, Object> requestData) {
+        ResponseData responseData = new ResponseData();
+
+        int board_idx = Integer.parseInt(requestData.get("board_idx").toString());
+        int deleteBoard = boardService.deleteBoard(board_idx);
+
+        if (deleteBoard >= 1) {
+            return ResponseEntity.ok(responseData);
+        } else {
+            responseData.setCode("500");
+            responseData.setMsg("게시글 삭제 실패");
+            return ResponseEntity.ok(responseData);
+        }
+
     }
 
 

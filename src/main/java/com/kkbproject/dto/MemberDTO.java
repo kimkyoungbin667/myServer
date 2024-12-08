@@ -9,7 +9,7 @@ import lombok.ToString;
 @ToString
 public class MemberDTO {
 
-    private Long user_idx;          //유저 인덱스 번호
+    private Long userIdx;          //유저 인덱스 번호
     private String userId;          //유저 아이디
     private String userName;        //유저 이름
 

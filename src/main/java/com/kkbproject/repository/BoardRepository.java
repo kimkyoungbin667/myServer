@@ -25,4 +25,8 @@ public class BoardRepository {
     public int writeBoard(BoardDTO boardDTO) {
         return sql.insert("Board.writeBoard", boardDTO);
     }
+
+    public int deleteBoard(int board_Idx) {
+        return sql.delete("Board.deleteBoard", board_Idx);
+    }
 }

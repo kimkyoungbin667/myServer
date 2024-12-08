@@ -47,20 +47,31 @@
 
     <insert id="writeBoard" parameterType="board">
         INSERT INTO tb_board (
-            title,
-            content,
-            create_by,
-            created,
-            delete_yn
+        title,
+        content,
+        create_by,
+        created,
+        delete_yn,
+        modified,
+        modified_by
         )
         VALUES (
-                   #{title},
-                   #{content},
-                   #{createByIdx}, -- 작성자 인덱스를 매핑
-                   NOW(), -- 현재 날짜와 시간
-                   'N' -- 기본값으로 'N' 설정
-               )
+        #{title},     <!-- 게시글 제목 -->
+        #{content},   <!-- 게시글 내용 -->
+        #{userIdx},   <!-- 작성자 인덱스 -->
+        NOW(),        <!-- 생성 시간 -->
+        'N',           <!-- 삭제 여부 기본값 -->
+        NOW(),
+        #{userIdx}
+        )
     </insert>
+
+    <update id="deleteBoard" parameterType="Integer">
+        UPDATE tb_board
+        SET delete_yn = 'Y'
+        WHERE board_idx = #{board_idx}
+    </update>
+
 
 
 

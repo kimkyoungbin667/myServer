@@ -24,4 +24,8 @@ public class BoardService {
     public int writeBoard(BoardDTO boardDTO) {
         return boardRepository.writeBoard(boardDTO);
     }
+
+    public int deleteBoard(int board_idx) {
+        return boardRepository.deleteBoard(board_idx);
+    }
 }
