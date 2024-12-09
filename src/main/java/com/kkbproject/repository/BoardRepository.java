@@ -41,4 +41,8 @@ public class BoardRepository {
     public List<BoardDTO> findWriter(String param) {
         return sql.selectList("Board.findWriter", param);
     }
+
+    public int goodBoard(int boardId) {
+        return sql.update("Board.goodBoard", boardId);
+    }
 }

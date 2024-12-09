@@ -46,9 +46,7 @@ public class BoardController {
             }
         }
             list = boardService.findAll();
-
         return list;
-
     }
 
     @GetMapping("/detailBoard")
@@ -111,8 +109,29 @@ public class BoardController {
             responseData.setMsg("게시글 수정 실패");
             return ResponseEntity.ok(responseData);
         }
-
     }
+
+
+    @PostMapping("/goodBoard")
+    @ResponseBody
+    public ResponseEntity<ResponseData> goodBoard(@RequestBody Map<String, Object> requestData) {
+        ResponseData responseData = new ResponseData();
+
+        int boardId = Integer.parseInt(requestData.get("boardId").toString());
+        System.out.println(boardId);
+
+        int goodBoard = boardService.goodBoard(boardId);
+
+        if (goodBoard >= 1) {
+            return ResponseEntity.ok(responseData);
+        } else {
+            responseData.setCode("500");
+            responseData.setMsg("좋아요 수정 실패");
+            return ResponseEntity.ok(responseData);
+        }
+    }
+
+
 
 
 

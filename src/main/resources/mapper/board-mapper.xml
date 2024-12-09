@@ -120,5 +120,11 @@
         WHERE board_idx = #{boardIdx}
     </update>
 
+    <update id="goodBoard" parameterType="Integer">
+        UPDATE tb_board
+        SET good = good+1
+        WHERE board_idx = #{boardId}
+    </update>
+
 
 </mapper>

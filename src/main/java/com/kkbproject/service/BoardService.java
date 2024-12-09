@@ -42,4 +42,8 @@ public class BoardService {
     public List<BoardDTO> findWriter(String param) {
         return boardRepository.findWriter(param);
     }
+
+    public int goodBoard(int boardId) {
+        return boardRepository.goodBoard(boardId);
+    }
 }
