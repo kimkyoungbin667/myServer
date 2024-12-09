@@ -4,6 +4,7 @@ import com.kkbproject.dto.BoardDTO;
 import com.kkbproject.dto.MemberDTO;
 import com.kkbproject.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.autoconfigure.sql.init.SqlDataSourceScriptDatabaseInitializer;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BoardService {
     private final BoardRepository boardRepository;
+    private final SqlDataSourceScriptDatabaseInitializer dataSourceScriptDatabaseInitializer;
 
     public List<BoardDTO> findAll() {
         return boardRepository.findAll();
@@ -31,5 +33,13 @@ public class BoardService {
 
     public int reviseBoard(BoardDTO boardDTO) {
         return boardRepository.reviseBoard(boardDTO);
+    }
+
+    public List<BoardDTO> findTitle(String param) {
+        return boardRepository.findTitle(param);
+    }
+
+    public List<BoardDTO> findWriter(String param) {
+        return boardRepository.findWriter(param);
     }
 }

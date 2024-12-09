@@ -40,7 +40,6 @@ public class MemberController {
             responseData.setMsg("로그인 실패");
             return ResponseEntity.ok(responseData);
         }
-
     }
 
 

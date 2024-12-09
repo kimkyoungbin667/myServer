@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -27,10 +28,27 @@ public class BoardController {
 
     @GetMapping("/findAll")
     @ResponseBody // 반환 데이터를 JSON으로 직렬화
-    public List<BoardDTO> findAll() {
-        List<BoardDTO> list = boardService.findAll();
-        System.out.println("반환된 리스트 : "+list);
+    public List<BoardDTO> findAll(@RequestParam(value = "keyword", required = false, defaultValue = "") String param,
+                                  @RequestParam(value = "setting", required = false, defaultValue = "") String param2) {
+        System.out.println(param);
+        System.out.println(param2);
+
+        List<BoardDTO> list = new ArrayList<>();
+
+        //만약 값이 있으면
+        if(param != "") {
+            if(param2.equals("title")) {
+                list = boardService.findTitle(param);
+                return list;
+            } else if (param2.equals("writer")) {
+                list = boardService.findWriter(param);
+                return list;
+            }
+        }
+            list = boardService.findAll();
+
         return list;
+
     }
 
     @GetMapping("/detailBoard")

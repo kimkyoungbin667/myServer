@@ -33,4 +33,12 @@ public class BoardRepository {
     public int reviseBoard(BoardDTO boardDTO) {
         return sql.update("Board.reviseBoard", boardDTO);
     }
+
+    public List<BoardDTO> findTitle(String param) {
+        return sql.selectList("Board.findTitle", param);
+    }
+
+    public List<BoardDTO> findWriter(String param) {
+        return sql.selectList("Board.findWriter", param);
+    }
 }

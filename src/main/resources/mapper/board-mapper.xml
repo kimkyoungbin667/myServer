@@ -24,6 +24,48 @@
             b.delete_yn = 'N'
     </select>
 
+    <select id="findTitle" resultType="board" parameterType="String">
+        SELECT
+            b.board_idx AS board_idx,    -- 게시판 인덱스
+            b.title,               -- 제목
+            b.content,             -- 내용
+            b.good,                -- 좋아요 수
+            b.created,             -- 생성일
+            b.delete_yn,           -- 삭제 여부
+            u.user_id,             -- 작성자 아이디
+            u.user_idx AS user_idx,     -- 작성자 인덱스
+            u.user_name            -- 작성자 이름
+        FROM
+            tb_board b
+                LEFT JOIN
+            tb_user u
+            ON
+                b.create_by = u.user_idx
+        WHERE
+            b.delete_yn = 'N' and b.title LIKE CONCAT('%', #{title}, '%')
+    </select>
+
+    <select id="findWriter" resultType="board" parameterType="String">
+        SELECT
+            b.board_idx AS board_idx,    -- 게시판 인덱스
+            b.title,               -- 제목
+            b.content,             -- 내용
+            b.good,                -- 좋아요 수
+            b.created,             -- 생성일
+            b.delete_yn,           -- 삭제 여부
+            u.user_id,             -- 작성자 아이디
+            u.user_idx AS user_idx,     -- 작성자 인덱스
+            u.user_name            -- 작성자 이름
+        FROM
+            tb_board b
+                LEFT JOIN
+            tb_user u
+            ON
+                b.create_by = u.user_idx
+        WHERE
+            b.delete_yn = 'N' and u.user_name LIKE CONCAT('%', #{writer}, '%')
+    </select>
+
     <select id="detailBoard" parameterType="Integer" resultType="board">
         SELECT
             b.board_idx,
